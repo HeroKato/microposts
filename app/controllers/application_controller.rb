@@ -12,4 +12,13 @@ class ApplicationController < ActionController::Base
       redirect_to login_url
     end
   end
+  
+  # 正しいユーザーかどうか確認
+  def correct_user
+    @user = User.find(params[:id])
+    unless current_user?(@user)
+      redirect_to(login_url)
+      flash[:danger] = "Please log in as correct user."
+    end
+  end
 end
