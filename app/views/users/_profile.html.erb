@@ -1,0 +1,16 @@
+<div class="profile">
+  <h1>Profile</h1>
+  <div class="col-md-12">
+    <% if @user.profile? %>
+      <%= @user.profile %>
+    <% end %>
+  </div>
+</div>
+<div class="location">
+  <h1>Location</h1>
+  <div class="col-md-12">
+    <% if @user.location? %>
+      <%= @user.location %>
+    <% end %>
+  </div>
+</div>
