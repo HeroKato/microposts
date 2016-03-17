@@ -1,0 +1,13 @@
+<% @user ||= current_user %>
+<div class="profile">
+  <h1>Profile</h1>
+  <div class="col-md-12">
+    <%= @user.profile %>
+  </div>
+</div>
+<div class="location">
+  <h1>Location</h1>
+  <div class="col-md-12">
+    <%= @user.location %>
+  </div>
+</div>

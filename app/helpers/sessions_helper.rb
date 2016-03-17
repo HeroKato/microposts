@@ -15,4 +15,8 @@ module SessionsHelper
   def current_user?(user)
     user == current_user
   end
+  
+  def user_find
+    @user = User.find(params[:id])
+  end
 end
