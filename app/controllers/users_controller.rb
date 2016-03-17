@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :logged_in_user, only: [:index, :edit, :update, :destroy, :following, :followers]
   before_action :correct_user, only:[:edit, :update]
-  before_action :user_find, only:[:show, :create, :following, :followers]
+  before_action :user_find, only:[:show, :following, :followers]
   
   def index
     @users = User.all
@@ -16,6 +16,7 @@ class UsersController < ApplicationController
   end
   
   def create
+    @user = User.new(user_params)
     if @user.save
       flash[:success] = "Welcome to the Sample App!"
       redirect_to @user
