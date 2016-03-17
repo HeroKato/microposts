@@ -4,11 +4,11 @@ class UsersController < ApplicationController
   before_action :user_find, only:[:show, :following, :followers]
   
   def index
-    @users = User.all
+    @users = User.page(params[:page]).per(5).order(:id)
   end
   
   def show
-    @microposts = @user.microposts.order(created_at: :desc)
+    @microposts = @user.microposts.order(created_at: :desc).page(params[:page]).per(5).order(:id)
   end
   
   def new
@@ -39,13 +39,13 @@ class UsersController < ApplicationController
   
   def following
     @title = "Following"
-    @users = @user.following_users
+    @users = @user.following_users.page(params[:page]).per(5).order(:id)
     render 'show_follow'
   end
   
   def followers
     @title = "Followers"
-    @users = @user.follower_users
+    @users = @user.follower_users.page(params[:page]).per(5).order(:id)
     render 'show_follow'
   end
   

@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
   validates :email, presence: true, length: { maximum: 255 }, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }
   has_secure_password
   validates :profile, presence: false, length: { maximum: 400 }
-  validates :location, presence: false, length: { maximum: 10 }
+  validates :location, presence: false, length: { maximum: 100 }
   
   has_many :microposts
   has_many :following_relationships, class_name:  "Relationship",
@@ -37,4 +37,7 @@ class User < ActiveRecord::Base
   def feed_items
     Micropost.where(user_id: following_user_ids + [self.id])
   end
+  
+  paginates_per 3
+
 end
